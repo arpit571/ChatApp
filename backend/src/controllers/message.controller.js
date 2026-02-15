@@ -21,6 +21,11 @@ export const getMessages = async (req, res) => {
     const { id: userToChatId } = req.params;
     const myId = req.user._id;
 
+            // ✅ Validate ObjectId
+    if (!mongoose.Types.ObjectId.isValid(userToChatId)) {
+      return res.status(400).json({ error: "Invalid user ID" });
+    }
+
     const messages = await Message.find({
       $or: [
         { senderId: myId, receiverId: userToChatId },
