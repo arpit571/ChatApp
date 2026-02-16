@@ -33,6 +33,9 @@ export const getMessages = async (req, res) => {
       ],
     });
 
+.sort({ createdAt: 1 });
+
+    
     res.status(200).json(messages);
   } catch (error) {
     console.log("Error in getMessages controller: ", error.message);
