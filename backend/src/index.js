@@ -43,3 +43,9 @@ server.listen(PORT, () => {
   console.log("server is running on PORT:" + PORT);
   connectDB();
 });
+
+app.use((err, req, res, next) => {
+  console.error("Global Error:", err.stack);
+  res.status(500).json({ message: "Something went wrong" });
+});
+
